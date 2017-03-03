@@ -33,9 +33,9 @@ module Helpers
 
     unless readOnly
       if disable_after_rate
-        readOnly = !(current_ratyrater && rateable_obj.can_rate?(current_ratyrater, dimension))
+        readOnly = !(current_ratyrater(userClass) && rateable_obj.can_rate?(current_ratyrater(userClass), dimension))
       else
-        readOnly = !current_ratyrater || false
+        readOnly = !current_ratyrater(userClass) || false
       end
     end
 
