@@ -26,15 +26,16 @@ module Helpers
     targetFormat = options[:targetFormat] || '{score}'
     targetScore  = options[:targetScore]  || ''
     readOnly     = options[:readonly]     || false
+    userClass    = options[:user_class]   || 'user'
 
     disable_after_rate = options[:disable_after_rate] && true
     disable_after_rate = true if disable_after_rate == nil
 
     unless readOnly
       if disable_after_rate
-        readOnly = !(current_user && rateable_obj.can_rate?(current_user, dimension))
+        readOnly = !(current_ratyrater && rateable_obj.can_rate?(current_ratyrater, dimension))
       else
-        readOnly = !current_user || false
+        readOnly = !current_ratyrater || false
       end
     end
 
@@ -139,6 +140,12 @@ module Helpers
                 "data-target-text" => targetText,
                 "data-target-format" => targetFormat,
                 "data-target-score" => targetScore
+  end
+
+  private
+
+  def current_ratyrater(user_class)
+    send("current_#{user_class.downcase}".to_sym)
   end
 
 end
