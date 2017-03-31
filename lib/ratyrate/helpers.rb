@@ -139,7 +139,8 @@ module Helpers
                 "data-target" => target,
                 "data-target-text" => targetText,
                 "data-target-format" => targetFormat,
-                "data-target-score" => targetScore
+                "data-target-score" => targetScore,
+                "data-jwt" => rateable_obj.rating_token
   end
 
   private
